@@ -1,20 +1,27 @@
 <?php
 
 
-namespace shaoyv8\Pospal\Ticket;
+namespace shaoyv8\Pospal\StockFlow;
 
 
 use Carbon\Carbon;
 use shaoyv8\Pospal\Api;
 
-class Ticket extends Api
+class StockFlow extends Api
 {
-    //1. 查询支付方式代码
-    const QUERY_ALL_PAY_METHOD_API = '/pospal-api2/openapi/v1/ticketOpenApi/queryAllPayMethod';
-    //2. 根据单据序列号查询
-    const QUERY_TICKET_BY_SN_API = '/pospal-api2/openapi/v1/ticketOpenApi/queryTicketBySn';
-    //4. 分页查询所有单据
-    const QUERY_TICKET_PAGES_API = '/pospal-api2/openapi/v1/ticketOpenApi/queryTicketPages';
+//    2.分页查询所有订货单(所有门店创建的订货单)
+//    3.根据Id查询订货单
+//    4.分页查询所有货单（调货\进货\退货）（所有门店创建的贷流单）
+//    5.根据订货单id查询所有单（调货\进货\退货）
+//    6. 根据货单id查询货单
+//    7. 创建货流单
+//    8. 确认出货
+//    9. 确认进货
+//    10. 拒绝出货
+//    11. 拒绝进货
+//    12. 分页查询采购单
+    //获取门店所有收银员
+    const QUERY_ALL_PAY_METHOD_API = '/pospal-api2/openapi/v1/stockFlowOpenApi/queryProductRequestPages';
 
     /**
      * 查询支付方式代码
@@ -32,7 +39,7 @@ class Ticket extends Api
      * @param $sn
      * @return array
      */
-    public function queryTicketBySn($sn)
+    public function query($sn)
     {
         return $this->request(self::QUERY_TICKET_BY_SN_API, ['sn' => $sn]);
     }
@@ -46,8 +53,9 @@ class Ticket extends Api
      */
     public function paginate($params = [])
     {
-        $params['startTime'] = $params['startTime'] ?? Carbon::today()->toDateTimeString();
-        $params['endTime'] = $params['endTime'] ?? Carbon::today()->endOfDay()->toDateTimeString();
+        $params['startTime'] = $params['startTime'] ?? Carbon::yesterday()->toDateTimeString();
+        $params['endTime'] = $params['endTime'] ?? Carbon::yesterday()->endOfDay()->toDateTimeString();
+
         return $this->request(self::QUERY_TICKET_PAGES_API, $params);
     }
 
@@ -77,5 +85,5 @@ class Ticket extends Api
             }
         }
     }
-    
+
 }

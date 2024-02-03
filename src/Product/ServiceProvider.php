@@ -1,7 +1,7 @@
 <?php
 
 
-namespace Hanson\Pospal\Product;
+namespace shaoyv8\Pospal\Product;
 
 
 use Pimple\Container;

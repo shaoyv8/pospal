@@ -1,7 +1,7 @@
 <?php
 
 
-namespace Hanson\Pospal;
+namespace shaoyv8\Pospal;
 
 
 class HttpException extends \Exception

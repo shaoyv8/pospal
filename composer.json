@@ -1,19 +1,19 @@
 {
-    "name": "hanson/pospal",
+    "name": "shaoyv8/pospal",
     "license": "MIT",
     "authors": [
         {
-            "name": "HanSon",
+            "name": "shaoyv8",
             "email": "h@hanc.cc"
         }
     ],
     "require": {
-        "hanson/foundation-sdk": "^2.0",
+        "shaoyv8/foundation-sdk": "^2.0",
         "nesbot/carbon": "^1.27"
     },
     "autoload": {
         "psr-4": {
-            "Hanson\\Pospal\\": "src/"
+            "shaoyv8\\Pospal\\": "src/"
         }
     }
 }

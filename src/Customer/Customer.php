@@ -1,14 +1,14 @@
 <?php
 
 
-namespace Hanson\Pospal\Customer;
+namespace shaoyv8\Pospal\Customer;
 
 
-use Hanson\Pospal\Api;
+use shaoyv8\Pospal\Api;
 
 class Customer extends Api
 {
-
+    //1. 根据会员号查询会员
     const QUERY_BY_NUMBER_API = '/pospal-api2/openapi/v1/customerOpenApi/queryByNumber';
     const QUERY_CUSTOMER_PAGES_API = '/pospal-api2/openapi/v1/customerOpenApi/queryCustomerPages';
     const QUERY_BY_UID_API = '/pospal-api2/openapi/v1/customerOpenApi/queryByUid';

@@ -1,10 +1,10 @@
 <?php
 
 
-namespace Hanson\Pospal;
+namespace shaoyv8\Pospal;
 
 
-use Hanson\Foundation\AbstractAPI;
+use shaoyv8\Foundation\AbstractAPI;
 
 class Api extends AbstractAPI
 {
@@ -51,6 +51,7 @@ class Api extends AbstractAPI
         curl_setopt($curl, CURLOPT_POSTFIELDS, json_encode($params));		// Post提交的数据包
         curl_setopt($curl, CURLOPT_POST, 1);		// 发送一个常规的Post请求
         curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);// 获取的信息以文件流的形式返回
+        curl_setopt($curl,CURLOPT_ENCODING, '');
 
         $output = curl_exec($curl);
 
@@ -60,7 +61,7 @@ class Api extends AbstractAPI
 
         curl_close($curl);
 
-        $result = json_decode($output, true);
+       return $result = json_decode($output, true);
 
         $this->checkAndThrow($result);
 

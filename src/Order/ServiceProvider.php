@@ -1,7 +1,7 @@
 <?php
 
 
-namespace shaoyv8\Pospal\Ticket;
+namespace shaoyv8\Pospal\Order;
 
 
 use Pimple\Container;
@@ -20,8 +20,8 @@ class ServiceProvider implements ServiceProviderInterface
      */
     public function register(Container $pimple)
     {
-        $pimple['ticket'] = function ($pimple) {
-            return new Ticket($pimple['config']->get('app_id'), $pimple['config']->get('app_key'), $pimple['config']->get('url'));
+        $pimple['order'] = function ($pimple) {
+            return new Order($pimple['config']->get('app_id'), $pimple['config']->get('app_key'), $pimple['config']->get('url'));
         };
     }
 }

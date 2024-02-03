@@ -1,20 +1,16 @@
 <?php
 
 
-namespace shaoyv8\Pospal\Ticket;
+namespace shaoyv8\Pospal\Cashier;
 
 
 use Carbon\Carbon;
 use shaoyv8\Pospal\Api;
 
-class Ticket extends Api
+class Cashier extends Api
 {
-    //1. 查询支付方式代码
-    const QUERY_ALL_PAY_METHOD_API = '/pospal-api2/openapi/v1/ticketOpenApi/queryAllPayMethod';
-    //2. 根据单据序列号查询
-    const QUERY_TICKET_BY_SN_API = '/pospal-api2/openapi/v1/ticketOpenApi/queryTicketBySn';
-    //4. 分页查询所有单据
-    const QUERY_TICKET_PAGES_API = '/pospal-api2/openapi/v1/ticketOpenApi/queryTicketPages';
+    //1. 获取门店所有收银员
+    const QUERY_ALL_PAY_METHOD_API = '/pospal-api2/openapi/v1/cashierOpenApi/queryAllCashier';
 
     /**
      * 查询支付方式代码
@@ -32,7 +28,7 @@ class Ticket extends Api
      * @param $sn
      * @return array
      */
-    public function queryTicketBySn($sn)
+    public function query($sn)
     {
         return $this->request(self::QUERY_TICKET_BY_SN_API, ['sn' => $sn]);
     }
@@ -46,8 +42,9 @@ class Ticket extends Api
      */
     public function paginate($params = [])
     {
-        $params['startTime'] = $params['startTime'] ?? Carbon::today()->toDateTimeString();
-        $params['endTime'] = $params['endTime'] ?? Carbon::today()->endOfDay()->toDateTimeString();
+        $params['startTime'] = $params['startTime'] ?? Carbon::yesterday()->toDateTimeString();
+        $params['endTime'] = $params['endTime'] ?? Carbon::yesterday()->endOfDay()->toDateTimeString();
+
         return $this->request(self::QUERY_TICKET_PAGES_API, $params);
     }
 
@@ -77,5 +74,5 @@ class Ticket extends Api
             }
         }
     }
-    
+
 }

@@ -4,7 +4,7 @@
 ## 安装
 
 ```
-composer require hanson/pospal:dev-master
+composer require shaoyv8/pospal:dev-master
 ```
 
 ## 文档
@@ -12,7 +12,7 @@ composer require hanson/pospal:dev-master
 ### 实例化
 
 ```php
-$pospal = new \Hanson\Pospal\Pospal([
+$pospal = new \shaoyv8\Pospal\Pospal([
     'url' => 'your-url',
     'app_id' => 'your-app-id',
     'app_key' => 'your-app-key',
